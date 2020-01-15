@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import SwapiService from "../../services/swapi-service";
 
 import "./random-planet.css";
+import Spinner from "../spinner/spinner";
 
 export default class RandomPlanet extends Component {
   swapiService = new SwapiService();
@@ -28,6 +29,7 @@ export default class RandomPlanet extends Component {
     const {
       planet: { id, name, population, rotationPeriod, diameter }
     } = this.state;
+    return <Spinner/>
     return (
       <div className="random-planet jumbotron rounded">
         <img
