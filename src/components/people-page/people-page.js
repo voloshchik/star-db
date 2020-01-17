@@ -4,7 +4,7 @@ import Row from '../row';
 import ErrorBoundary from '../error-boundry/error-boundry';
 import ErrorIndicator from "../error-indicator/error-indicator";
 import ItemList from "../item-list/item-list";
-import PersonDetails from "../person-details/person-details";
+import PersonDetails from "../person-details/item-details";
 import SwapiService from "../../services/swapi-service";
 
 import "./people-page.css";
