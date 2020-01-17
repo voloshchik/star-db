@@ -54,7 +54,7 @@ class App extends React.Component {
         </button>
         <ErrorButton />
         <PeoplePage />
-        <div className="row mb2 PeoplePage ">
+        {/* <div className="row mb2 PeoplePage ">
           <div className="col-md-6">
           <ItemList
               onItemSelected={this.onItemSelected}
@@ -65,7 +65,7 @@ class App extends React.Component {
           <div className="col-md-6">
             <PersonDetails personId={this.state.itemSelected} />
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }
