@@ -58,7 +58,9 @@ class App extends React.Component {
           <div className="col-md-6">
           <ItemList
               onItemSelected={this.onItemSelected}
-              getData={this.swapiService.getAllPlanets} />
+              getData={this.swapiService.getAllPlanets} 
+              itemRender={(item)=>(<span> {item.name} <button>!</button> </span> )}
+              />
           </div>
           <div className="col-md-6">
             <PersonDetails personId={this.state.itemSelected} />
