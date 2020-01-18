@@ -7,7 +7,7 @@ import RandomPlanet from "../random-planet";
 import Row from "../row";
 import ErrorButton from "../error-button/error-button";
 import ErrorIndicator from "../error-indicator/error-indicator";
-import ItemDetails from "../item-details/item-details";
+import ItemDetails, { Record } from '../item-details/item-details';
 import PeoplePage from "../people-page/people-page";
 import SwapiService from "../../services/swapi-service";
 
@@ -41,16 +41,32 @@ class App extends React.Component {
     if (this.state.hasError) {
       return <ErrorIndicator />;
     }
-    const{getPerson,getStarship,getPersonImage, getStarshipImage}=this.swapiService
+    const {
+      getPerson,
+      getStarship,
+      getPersonImage,
+      getStarshipImage
+    } = this.swapiService;
     const personDetails = (
-      <ItemDetails itemId={11} getData={getPerson} 
-      getImageUrl={getPersonImage}
-      />
+      <ItemDetails
+        itemId={11}
+        getData={getPerson}
+        getImageUrl={getPersonImage}
+      >
+        <Record field={'gender'} label={'Gender'}/>
+        <Record field={'eyeColor'} label={'Eye color'}/>
+      </ItemDetails>
     );
     const starshipDetails = (
-      <ItemDetails itemId={5} getData={getStarship}
-      getImageUrl={ getStarshipImage}
-      />
+      <ItemDetails
+        itemId={11}
+        getData={getStarship}
+        getImageUrl={getStarshipImage}
+      >
+         <Record field={'model'} label={'Model'}/>
+        <Record field={'length'} label={'Length'}/>
+        <Record field={'costInCredits'} label={'Cost'}/>
+</ItemDetails>
     );
     return (
       <div>
