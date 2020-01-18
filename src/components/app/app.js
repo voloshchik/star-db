@@ -1,16 +1,17 @@
 import React from "react";
 
 import Header from "../header";
+import PersonDetails from "../item-details";
 import ItemList from "../item-list";
-import PersonDetails from "../person-details";
 import RandomPlanet from "../random-planet";
+import Row from "../row";
 import ErrorButton from "../error-button/error-button";
 import ErrorIndicator from "../error-indicator/error-indicator";
+import ItemDetails from "../item-details/item-details";
 import PeoplePage from "../people-page/people-page";
-import SwapiService from '../../services/swapi-service';
+import SwapiService from "../../services/swapi-service";
 
 import "./app.css";
-
 
 class App extends React.Component {
   swapiService = new SwapiService();
@@ -40,10 +41,21 @@ class App extends React.Component {
     if (this.state.hasError) {
       return <ErrorIndicator />;
     }
+    const{getPerson,getStarship,getPersonImage, getStarshipImage}=this.swapiService
+    const personDetails = (
+      <ItemDetails itemId={11} getData={getPerson} 
+      getImageUrl={getPersonImage}
+      />
+    );
+    const starshipDetails = (
+      <ItemDetails itemId={5} getData={getStarship}
+      getImageUrl={ getStarshipImage}
+      />
+    );
     return (
       <div>
         <Header />
-        {this.state.showRandomPlanet ? (
+        {/* {this.state.showRandomPlanet ? (
           <RandomPlanet toggleRandomPlanet={this.toggleRandomPlanet} />
         ) : null}
         <button
@@ -54,18 +66,9 @@ class App extends React.Component {
         </button>
         <ErrorButton />
         <PeoplePage />
-        {/* <div className="row mb2 PeoplePage ">
-          <div className="col-md-6">
-          <ItemList
-              onItemSelected={this.onItemSelected}
-              getData={this.swapiService.getAllPlanets} 
-              itemRender={(item)=>(<span> {item.name} <button>!</button> </span> )}
-              />
-          </div>
-          <div className="col-md-6">
-            <PersonDetails personId={this.state.itemSelected} />
-          </div>
-        </div> */}
+        */}
+
+        <Row left={personDetails} right={starshipDetails} />
       </div>
     );
   }

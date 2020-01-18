@@ -3,12 +3,13 @@ import React, { Component } from 'react';
 import ErrorButton from "../error-button/error-button";
 import SwapiService from "../../services/swapi-service";
 import './item-details.css'
-export default class itemDetails extends Component {
+export default class ItemDetails extends Component {
 
-  swapiService = new SwapiService();
+  
 
   state = {
-    item: null
+    item: null,
+    image:null
   };
 
   componentDidMount() {
@@ -22,22 +23,23 @@ export default class itemDetails extends Component {
   }
 
   updateItem() {
-    const { itemId } = this.props;
+    const { itemId,getData ,getImageUrl} = this.props;
     if (!itemId) {
       return;
     }
 
-    this.swapiService
-      .getPerson(itemId)
-      .then((person) => {
+    getData(itemId)
+      .then((item) => {
         
-        this.setState({ person });
+        this.setState({ item,
+        image:getImageUrl(item)
+        });
       });
   }
 
   render() {
 
-    const { item } = this.state;
+    const { item,image } = this.state;
     if (!item) {
       return <span>Select a person from a list</span>;
     }
@@ -47,8 +49,8 @@ export default class itemDetails extends Component {
 
     return (
       <div className="item-details card">
-        <img className="person-image"
-          src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
+        <img className="item-image"
+          src={image}
           alt="character"/>
 
         <div className="card-body">
