@@ -7,11 +7,12 @@ import RandomPlanet from "../random-planet";
 import Row from "../row";
 import ErrorButton from "../error-button/error-button";
 import ErrorIndicator from "../error-indicator/error-indicator";
-import ItemDetails, { Record } from '../item-details/item-details';
+import ItemDetails, { Record } from "../item-details/item-details";
 import PeoplePage from "../people-page/people-page";
 import SwapiService from "../../services/swapi-service";
 
 import "./app.css";
+import ErrorBoundary from '../error-boundry/error-boundry';
 
 class App extends React.Component {
   swapiService = new SwapiService();
@@ -41,20 +42,17 @@ class App extends React.Component {
     if (this.state.hasError) {
       return <ErrorIndicator />;
     }
-    const {
-      getPerson,
+    const { getPerson,
       getStarship,
       getPersonImage,
-      getStarshipImage
-    } = this.swapiService;
+      getStarshipImage,
+      getAllPeople,
+      getAllPlanets } = this.swapiService;
+
     const personDetails = (
-      <ItemDetails
-        itemId={11}
-        getData={getPerson}
-        getImageUrl={getPersonImage}
-      >
-        <Record field={'gender'} label={'Gender'}/>
-        <Record field={'eyeColor'} label={'Eye color'}/>
+      <ItemDetails itemId={11} getData={getPerson} getImageUrl={getPersonImage}>
+        <Record field={"gender"} label={"Gender"} />
+        <Record field={"eyeColor"} label={"Eye color"} />
       </ItemDetails>
     );
     const starshipDetails = (
@@ -63,29 +61,25 @@ class App extends React.Component {
         getData={getStarship}
         getImageUrl={getStarshipImage}
       >
-         <Record field={'model'} label={'Model'}/>
-        <Record field={'length'} label={'Length'}/>
-        <Record field={'costInCredits'} label={'Cost'}/>
-</ItemDetails>
+        <Record field={"model"} label={"Model"} />
+        <Record field={"length"} label={"Length"} />
+        <Record field={"costInCredits"} label={"Cost"} />
+      </ItemDetails>
     );
     return (
-      <div>
-        <Header />
-        {/* {this.state.showRandomPlanet ? (
-          <RandomPlanet toggleRandomPlanet={this.toggleRandomPlanet} />
-        ) : null}
-        <button
-          className="toggle-planet btn btn-warning btn-lg"
-          onClick={this.toggleRandomPlanet}
-        >
-          Toggle Random Planet
-        </button>
-        <ErrorButton />
-        <PeoplePage />
-        */}
+      <ErrorBoundary>
+        <div className="stardb-app">
+          <Header />
 
-        <Row left={personDetails} right={starshipDetails} />
-      </div>
+          <ItemList getData={getAllPeople} onItemSelected={() => {}}>
+            {({ name }) => <span>{name}</span>}
+          </ItemList>
+
+          <ItemList getData={getAllPlanets} onItemSelected={() => {}}>
+            {({ name }) => <span>{name}</span>}
+          </ItemList>
+        </div>
+      </ErrorBoundary>
     );
   }
 }

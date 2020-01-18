@@ -65,7 +65,6 @@ export default class SwapiService {
   };
 
   _transformStarship = starship => {
-    debugger
     return {
       id: this._extractId(starship),
       name: starship.name,
