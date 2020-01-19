@@ -7,7 +7,7 @@ import { withData } from '../hoc-helpers';
 import SwapiService from '../../services/swapi-service';
 
 const ItemList = (props) => {
-
+debugger
   const { data, onItemSelected, children: renderLabel } = props;
 
   const items = data.map((item) => {
