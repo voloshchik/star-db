@@ -2,6 +2,7 @@ import React from "react";
 
 import ItemDetails, { Record } from "../item-details/item-details";
 import { SwapiServiceConsumer } from "../swapi-sevice-context/swapi-sevice-context";
+import withSwapiService from '../hoc-helpers/with-swapi-service';
 const PersonDetails = ({ itemId }) => {
   return (
     <SwapiServiceConsumer>
@@ -20,4 +21,4 @@ const PersonDetails = ({ itemId }) => {
     </SwapiServiceConsumer>
   );
 };
-export default PersonDetails;
+export default withSwapiService (PersonDetails);
