@@ -2,13 +2,8 @@ import React from "react";
 
 import Header from "../header";
 
-import ItemList from "../item-list";
-import RandomPlanet from "../random-planet";
-import Row from "../row";
-import ErrorButton from "../error-button/error-button";
 import ErrorIndicator from "../error-indicator/error-indicator";
-import ItemDetails, { Record } from "../item-details/item-details";
-import PeoplePage from "../people-page/people-page";
+
 import SwapiService from "../../services/swapi-service";
 
 import "./app.css";
@@ -23,6 +18,7 @@ import {
   PersonDetails,
   StarshipDetails
 } from "../sw-components/detalis";
+import { SwapiServiceProvider } from "../swapi-sevice-context/swapi-sevice-context";
 
 class App extends React.Component {
   swapiService = new SwapiService();
@@ -52,34 +48,10 @@ class App extends React.Component {
     if (this.state.hasError) {
       return <ErrorIndicator />;
     }
-    const {
-      getPerson,
-      getStarship,
-      getPersonImage,
-      getStarshipImage,
-      getAllPeople,
-      getAllPlanets
-    } = this.swapiService;
 
-    // const personDetails = (
-    //   <ItemDetails itemId={11} getData={getPerson} getImageUrl={getPersonImage}>
-    //     <Record field={"gender"} label={"Gender"} />
-    //     <Record field={"eyeColor"} label={"Eye color"} />
-    //   </ItemDetails>
-    // );
-    // const starshipDetails = (
-    //   <ItemDetails
-    //     itemId={11}
-    //     getData={getStarship}
-    //     getImageUrl={getStarshipImage}
-    //   >
-    //     <Record field={"model"} label={"Model"} />
-    //     <Record field={"length"} label={"Length"} />
-    //     <Record field={"costInCredits"} label={"Cost"} />
-    //   </ItemDetails>
-    // );
     return (
       <ErrorBoundary>
+        <SwapiServiceProvider value={this.swapiService}>
         <div className="stardb-app">
           <Header />
           <PersonDetails itemId={1} />
@@ -89,6 +61,7 @@ class App extends React.Component {
           <PlanetList />
           <StarshipList />
         </div>
+        </SwapiServiceProvider>
       </ErrorBoundary>
     );
   }
