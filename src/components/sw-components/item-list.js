@@ -8,6 +8,12 @@ import SwapiService from "../../services/swapi-service";
 const swapiService = new SwapiService();
 const { getAllPeople, getAllPlanets, getAllStarships } = swapiService;
 
+const witHChildrenFunction = (Wrapper, fn) => {
+  return props => {
+    return <Wrapper {...props}>{fn}</Wrapper>;
+  };
+};
+ const withListChilren= witHChildrenFunction()
 const PersonList = withData(ItemList, getAllPeople);
 
 const PlanetList = withData(ItemList, getAllPlanets);
