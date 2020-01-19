@@ -83,11 +83,11 @@ class App extends React.Component {
         <div className="stardb-app">
           <Header />
           <PersonDetails itemId={1} />
-          <PlanetDetails  itemId={4}/>
+          <PlanetDetails itemId={4} />
           <StarshipDetails itemId={9} />
-          <PersonList>{({ name }) => <span>{name}</span>}</PersonList>
-          <PlanetList>{({ name }) => <span>{name}</span>}</PlanetList>
-          <StarshipList>{({ name }) => <span>{name}</span>}</StarshipList>
+          <PersonList />
+          <PlanetList />
+          <StarshipList />
         </div>
       </ErrorBoundary>
     );
