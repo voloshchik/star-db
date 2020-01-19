@@ -1,8 +1,8 @@
-import React from 'react'
-import SwapiService from '../../services/swapi-service';
+import React from "react";
+import SwapiService from "../../services/swapi-service";
 
-const swapiService= new SwapiService
-const {getAllPeople,getAllPlanet}
+const swapiService = new SwapiService();
+const { getAllPeople, getAllPlanet } = swapiService;
 const PersonDetails = () => {};
 
 const PlanetDetails = () => {};
