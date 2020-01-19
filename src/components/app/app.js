@@ -13,7 +13,11 @@ import SwapiService from "../../services/swapi-service";
 
 import "./app.css";
 import ErrorBoundary from "../error-boundry/error-boundry";
-import { PersonList } from "../sw-components/item-list";
+import {
+  PersonList,
+  PlanetList,
+  StarshipList
+} from "../sw-components/item-list";
 
 class App extends React.Component {
   swapiService = new SwapiService();
@@ -75,6 +79,9 @@ class App extends React.Component {
           <Header />
 
           <PersonList>{({ name }) => <span>{name}</span>}</PersonList>
+          <PlanetList>{({ name }) => <span>{name}</span>}</PlanetList>
+
+          <StarshipList>{({ name }) => <span>{name}</span>}</StarshipList>
         </div>
       </ErrorBoundary>
     );
