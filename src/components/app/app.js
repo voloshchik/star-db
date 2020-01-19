@@ -12,7 +12,8 @@ import PeoplePage from "../people-page/people-page";
 import SwapiService from "../../services/swapi-service";
 
 import "./app.css";
-import ErrorBoundary from '../error-boundry/error-boundry';
+import ErrorBoundary from "../error-boundry/error-boundry";
+import { PersonList } from "../sw-components/item-list";
 
 class App extends React.Component {
   swapiService = new SwapiService();
@@ -42,12 +43,14 @@ class App extends React.Component {
     if (this.state.hasError) {
       return <ErrorIndicator />;
     }
-    const { getPerson,
+    const {
+      getPerson,
       getStarship,
       getPersonImage,
       getStarshipImage,
       getAllPeople,
-      getAllPlanets } = this.swapiService;
+      getAllPlanets
+    } = this.swapiService;
 
     const personDetails = (
       <ItemDetails itemId={11} getData={getPerson} getImageUrl={getPersonImage}>
@@ -71,13 +74,7 @@ class App extends React.Component {
         <div className="stardb-app">
           <Header />
 
-          <ItemList getData={getAllPeople} onItemSelected={() => {}}>
-            {({ name }) => <span>{name}</span>}
-          </ItemList>
-
-          <ItemList getData={getAllPlanets} onItemSelected={() => {}}>
-            {({ name }) => <span>{name}</span>}
-          </ItemList>
+          <PersonList>{({ name }) => <span>{name}</span>}</PersonList>
         </div>
       </ErrorBoundary>
     );

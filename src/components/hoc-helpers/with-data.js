@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Spinner from '../spinner';
 
 const withData = (View, getData) => {
-  debugger
+  
   return class extends Component {
   
     state = {
