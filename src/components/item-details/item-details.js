@@ -45,7 +45,7 @@ export default class ItemDetails extends Component {
       return <span>Select a person from a list</span>;
     }
 
-    const { id, name, gender, birthYear, eyeColor } = item;
+    const {  name  } = item;
 
     return (
       <div className="item-details card">
