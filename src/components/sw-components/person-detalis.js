@@ -12,7 +12,7 @@ const PersonDetails = props => {
   );
 };
 const mapMethodsToProps = swapiService => {
-  debugger
+  
   return {
     getData: swapiService.getPerson,
     getImageUrl: swapiService.getPersonImage

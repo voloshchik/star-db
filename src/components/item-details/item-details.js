@@ -2,9 +2,10 @@ import React, { Component } from "react";
 
 import ErrorButton from "../error-button/error-button";
 import SwapiService from "../../services/swapi-service";
+
 import "./item-details.css";
 
- export const Record = ({item,field,label}) => {
+export const Record = ({ item, field, label }) => {
   return (
     <li className="list-group-item">
       <span className="term">{label}</span>
@@ -23,7 +24,11 @@ export default class ItemDetails extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.itemId !== prevProps.itemId) {
+    if (
+      this.props.itemId !== prevProps.itemId ||
+      this.props.getData !== prevProps.getData ||
+      this.props.getImageUrl !== prevProps.getImageUrl
+    ) {
       this.updateItem();
     }
   }
@@ -45,7 +50,7 @@ export default class ItemDetails extends Component {
       return <span>Select a person from a list</span>;
     }
 
-    const {  name  } = item;
+    const { name } = item;
 
     return (
       <div className="item-details card">
@@ -54,12 +59,9 @@ export default class ItemDetails extends Component {
         <div className="card-body">
           <h4>{name}</h4>
           <ul className="list-group list-group-flush">
-            {
-              React.Children.map(this.props.children,(child,index)=>{
-                
-              return React.cloneElement(child,{item})
-              })
-            }
+            {React.Children.map(this.props.children, (child, index) => {
+              return React.cloneElement(child, { item });
+            })}
             {/* <li className="list-group-item">
               <span className="term">Gender</span>
               <span>{gender}</span>
