@@ -18,6 +18,7 @@ import DummySwapiService from "../../services/dummy-swapi-service";
 import SwapiService from "../../services/swapi-service";
 
 import "./app.css";
+import PeoplePage from "../pages/people-page";
 
 class App extends React.Component {
   state = {
@@ -65,12 +66,14 @@ class App extends React.Component {
           <div className="stardb-app">
             <Header onServiceChange={this.onServiceChange} />
             <RandomPlanet />
-            <Row left={<PersonList />} right={<PersonDetails itemId={1} />} />
-            <Row left={<PlanetList />} right={<PlanetDetails itemId={4} />} />
+            {/* <Row left={<PersonList />} right={<PersonDetails itemId={1} />} /> */}
+
+            <PeoplePage/>
+            {/* <Row left={<PlanetList />} right={<PlanetDetails itemId={4} />} />
             <Row
               left={<StarshipList />}
               right={<StarshipDetails itemId={9} />}
-            />
+            /> */}
           </div>
         </SwapiServiceProvider>
       </ErrorBoundary>
