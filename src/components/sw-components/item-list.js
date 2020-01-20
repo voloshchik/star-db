@@ -1,8 +1,7 @@
 import React from "react";
 
-import ItemList from "../item-list";
-// import withData from "../item-list/item-list";
 import { withData } from "../hoc-helpers";
+import ItemList from "../item-list";
 import SwapiService from "../../services/swapi-service";
 
 const swapiService = new SwapiService();
@@ -19,7 +18,6 @@ const renderModelAndName = ({ model, name }) => (
     {name}({model})
   </span>
 );
-const withListChilren = withChildrenFunction(ItemList, renderName);
 const PersonList = withData(
   withChildrenFunction(ItemList, renderName),
   getAllPeople
