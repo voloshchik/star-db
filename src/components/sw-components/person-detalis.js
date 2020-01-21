@@ -12,10 +12,9 @@ const PersonDetails = props => {
   );
 };
 const mapMethodsToProps = swapiService => {
-  
   return {
     getData: swapiService.getPerson,
     getImageUrl: swapiService.getPersonImage
   };
 };
-export default withSwapiService(PersonDetails, mapMethodsToProps);
+export default withSwapiService(mapMethodsToProps)(PersonDetails);
