@@ -4,12 +4,13 @@ import { withData } from "../hoc-helpers";
 import ItemList from "../item-list";
 import withSwapiService from "../hoc-helpers/with-swapi-service";
 import compose from "../hoc-helpers/compose";
+import withChildrenFunction from '../hoc-helpers/with-children-function';
 
-const withChildrenFunction = fn => Wrapper => {
-  return props => {
-    return <Wrapper {...props}>{fn}</Wrapper>;
-  };
-};
+// const withChildrenFunction = fn => Wrapper => {
+//   return props => {
+//     return <Wrapper {...props}>{fn}</Wrapper>;
+//   };
+// };
 const renderName = ({ name }) => <span>{name}</span>;
 const renderModelAndName = ({ model, name }) => (
   <span>
