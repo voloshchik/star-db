@@ -5,11 +5,16 @@ import Spinner from "../spinner";
 const withData = View => {
   return class extends Component {
     state = {
-      data: null
+      data: null,
+      loading:false,
+      hasError:false
     };
 
     componentDidMount() {
       this.update();
+      this.setState({
+        loading:true
+      })
     }
     componentDidUpdate(prevProps) {
       if (this.props.getData !== prevProps.getData) {
