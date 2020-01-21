@@ -2,6 +2,7 @@ import React from "react";
 
 import withSwapiService from "../hoc-helpers/with-swapi-service";
 import ItemDetails, { Record } from "../item-details/item-details";
+import compose from "../hoc-helpers/compose";
 
 const PersonDetails = props => {
   return (
@@ -17,4 +18,5 @@ const mapMethodsToProps = swapiService => {
     getImageUrl: swapiService.getPersonImage
   };
 };
-export default withSwapiService(mapMethodsToProps)(PersonDetails);
+export default compose(withSwapiService(mapMethodsToProps))(PersonDetails);
+
