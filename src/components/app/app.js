@@ -1,9 +1,10 @@
 import React from "react";
 
-import  { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from "react-router-dom";
 
 import Header from "../header";
 import RandomPlanet from "../random-planet";
+import { StarshipDetails } from "../sw-components";
 import ErrorBoundary from "../error-boundry/error-boundry";
 import ErrorIndicator from "../error-indicator/error-indicator";
 import PeoplePage from "../pages/people-page";
@@ -62,9 +63,18 @@ class App extends React.Component {
             <div className="stardb-app">
               <Header onServiceChange={this.onServiceChange} />
               <RandomPlanet />
-              <Route path='/people' component={PeoplePage}/>
-              <Route path='/planets' component={PlanetPage}/>
-              <Route path='/starships' component={StarshipPage}/>
+              <Route path="/" exact render={() => <h2>Welcom to Star DB</h2>} />
+              <Route path="/people" component={PeoplePage} />
+              <Route path="/planets" component={PlanetPage} />
+              <Route path="/starships" exact component={StarshipPage} />
+              <Route
+                path="/starships/:id"
+                render={({match}) => {
+                  const {id}=match.params
+                  console.log(id)
+                  return <StarshipDetails itemId={id} />;
+                }}
+              />
               {/* <PeoplePage />
               <PlanetPage />
               <StarshipPage /> */}
