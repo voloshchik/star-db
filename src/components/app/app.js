@@ -9,7 +9,7 @@ import ErrorBoundary from "../error-boundry/error-boundry";
 import ErrorIndicator from "../error-indicator/error-indicator";
 import PeoplePage from "../pages/people-page";
 import { PlanetPage } from "../pages/planet-page";
-import { StarshipPage } from "../pages/starship-paget";
+import  StarshipPage  from "../pages/starship-paget";
 import { SwapiServiceProvider } from "../swapi-sevice-context/swapi-sevice-context";
 import DummySwapiService from "../../services/dummy-swapi-service";
 import SwapiService from "../../services/swapi-service";
