@@ -19,8 +19,11 @@ const ItemList = props => {
       </li>
     );
   });
-
+  ItemList.defaultProps = {
+    onItemSelected: () => {}
+  };
   return <ul className="item-list list-group">{items}</ul>;
+  
 };
 
 // const { getAllPeople } = new SwapiService();

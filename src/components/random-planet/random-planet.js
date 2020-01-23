@@ -8,7 +8,9 @@ import "./random-planet.css";
 
 export default class RandomPlanet extends Component {
   swapiService = new SwapiService();
-
+  static defaultProps={
+    updateInterval:5000
+  }
   state = {
     planet: {},
     loading: true,
@@ -21,7 +23,8 @@ export default class RandomPlanet extends Component {
     console.log("setff");
   }
   componentDidMount() {
-    this.interval = setInterval(this.updatePlanet, 5000);
+    const{updateInterval}=this.props
+    this.interval = setInterval(this.updatePlanet, updateInterval);
     console.log("setff");
   }
   componentWillUnmount() {
@@ -45,7 +48,7 @@ export default class RandomPlanet extends Component {
       .then(this.onPlanetLoaded)
       .catch(this.onError);
   };
-
+  
   render() {
     const { planet, loading, error } = this.state;
     const hasData = !(error || loading);
@@ -60,8 +63,9 @@ export default class RandomPlanet extends Component {
       </div>
     );
   }
+ 
 }
-
+ 
 const PlanetView = ({ planet }) => {
   const { id, name, population, rotationPeriod, diameter } = planet;
   return (
